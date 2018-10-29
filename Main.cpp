@@ -25,11 +25,11 @@ std::vector<csvRow> readCsvFile(int& size, const char* filename) {
 	return rows;
 }
 
-int outputSortedData(std::vector<csvRow> rows, int size, const char* filename) {
+int outputSortedData(std::vector<csvRow>& rows, int size, const char* filename) {
 	return 0;
 }
 
-void insertionSort(std::vector<csvRow> rows, int n) {
+void insertionSort(std::vector<csvRow> &rows, int n) {
 	for (int i = 2; i < n; i++) {	//we skip first row, because its header
 		csvRow key = rows[i];
 		int j = i - 1;				//we skip first row, because its header
@@ -42,7 +42,7 @@ void insertionSort(std::vector<csvRow> rows, int n) {
 		rows[j + 1] = key;
 	}
 }
-void mergeLeftRight(std::vector<csvRow> rows, int left, int mid, int right) {
+void mergeLeftRight(std::vector<csvRow>& rows, int left, int mid, int right) {
 	int i, j, k;
 
 	int leftSize = mid - left + 1;
@@ -58,15 +58,12 @@ void mergeLeftRight(std::vector<csvRow> rows, int left, int mid, int right) {
 	i = 0; // Initial index of first subarray 
 	j = 0; // Initial index of second subarray 
 	k = left; // Initial index of merged subarray 
-	while (i < leftSize && j < rightSize)
-	{
-		if (leftVector[i] <= rightVector[j])
-		{
+	while (i < leftSize && j < rightSize){
+		if (leftVector[i] <= rightVector[j]){
 			rows[k] = leftVector[i];
 			i++;
 		}
-		else
-		{
+		else{
 			rows[k] = rightVector[j];
 			j++;
 		}
@@ -75,8 +72,7 @@ void mergeLeftRight(std::vector<csvRow> rows, int left, int mid, int right) {
 
 	/* Copy the remaining elements of L[], if there
 	   are any */
-	while (i < leftSize)
-	{
+	while (i < leftSize){
 		rows[k] = leftVector[i];
 		i++;
 		k++;
@@ -90,7 +86,7 @@ void mergeLeftRight(std::vector<csvRow> rows, int left, int mid, int right) {
 		k++;
 	}
 }
-void mergeSort(std::vector<csvRow> rows, int left, int right) {
+void mergeSort(std::vector<csvRow>& rows, int left, int right) {
 	if (left < right) {
 		int mid = left + (right - left) / 2;
 		mergeSort(rows, left, mid); //sort left
