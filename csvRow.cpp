@@ -9,12 +9,13 @@ void csvRow::setMembers() {
 	if (index == std::string::npos) return;
 	std::size_t index2 = this->rowLine.find_first_of(",", index + 1);
 	if (index2 == std::string::npos) return;
-	this->price = this->rowLine.substr(index+1, index2-index-1);
+	std::string temp = this->rowLine.substr(index+1, index2-index-1);
+	this->price = stof(temp);
 }
 
 bool csvRow::operator>(csvRow& row2) {
 	if (this->key) {
-		return std::stof(this->price) > std::stof(row2.price); //string to float
+		return this->price > row2.price; //string to float
 	}
 	else {
 		return this->timestamp > row2.timestamp;

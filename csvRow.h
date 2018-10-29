@@ -1,7 +1,8 @@
 #pragma once
 #include <string>
 class csvRow {
-	std::string price, timestamp;
+	std::string timestamp;
+	float price;
 	static int key;
 public:
 	std::string rowLine;
