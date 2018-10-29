@@ -120,11 +120,12 @@ int main(int argc, char** argv) {
 	}
 	clock_t t = clock();
 	switch (*algo) {
-		t = clock();
 		case 'i': //insertion sort
+			t = clock();
 			insertionSort(rows, size);
 			break;
 		case 'm': //merge sort
+			t = clock();
 			mergeSort(rows, 1, size -1); //Sent left = 1 because 0th is header, size-1 is most right element.
 			break;
 		default:
