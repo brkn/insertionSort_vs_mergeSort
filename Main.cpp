@@ -30,22 +30,9 @@ int outputSortedData(std::vector<csvRow> rows, int size, const char* filename) {
 }
 
 int insertionSort(std::vector<csvRow> rows, int n, char feature) {
-	int f;
-
-	switch (feature) {
-		case 't':
-			f = 0;
-			break;
-		case 'p':
-			f = 1;
-			break;
-		default:
-			throw "Error. Unexpected feature for criterion: ";
-			return -2;
-	}
-	for (int i = 2; i < n; i++) {
+	for (int i = 2; i < n; i++) {	//we skip first row, because its header
 		csvRow key = rows[i];
-		int j = i - 1;
+		int j = i - 1;				//we skip first row, because its header
 
 		while (j >= 1 && rows[j] > key)
 		{
@@ -54,7 +41,6 @@ int insertionSort(std::vector<csvRow> rows, int n, char feature) {
 		}
 		rows[j + 1] = key;
 	}
-
 	return 0;
 }
 

@@ -14,7 +14,7 @@ void csvRow::setMembers() {
 
 bool csvRow::operator>(csvRow& row2) {
 	if (this->key) {
-		return std::stof(this->price) > std::stof(row2.price);
+		return std::stof(this->price) > std::stof(row2.price); //string to float
 	}
 	else {
 		return this->timestamp > row2.timestamp;
