@@ -117,8 +117,9 @@ int main(int argc, char** argv) {
 		printf("%s", e);
 		return -4;
 	}
-	
+	clock_t t = clock();
 	switch (*algo) {
+		t = clock();
 		case 'i': //insertion sort
 			insertionSort(rows, size);
 			break;
@@ -129,7 +130,8 @@ int main(int argc, char** argv) {
 			printf("Error. Unexpected algorithm type: %c\n", *algo);
 			return -1;
 	}
-
+	t = clock() - t;
+	printf("Sorted %d rows, \n %c criterion \n, %c algorithm \n %f seconds", ((float)t) / CLOCKS_PER_SEC);
 	//output to file
 	try { // output as given filename.
 		outputSortedDataToFile(rows, size, "sorted.csv"); //outputs the sorted data to given filename
