@@ -1,6 +1,7 @@
 
 #include "csvRow.h"
 #include <string>
+#include <cstdlib>
 
 void csvRow::setMembers() {
 	std::size_t index = this->rowLine.find_first_of(",");
