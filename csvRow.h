@@ -3,7 +3,7 @@
 class csvRow {
 	std::string timestamp;
 	float price;
-	static int key;
+	static int key; //1 for price 0 for time
 public:
 	std::string rowLine;
 	void setMembers();

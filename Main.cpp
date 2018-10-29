@@ -7,7 +7,6 @@
 
 std::vector<csvRow> readCsvFile(int& size, const char* filename) {
 	std::vector<csvRow> rows(size);
-	//csvRow temp;
 
 	std::ifstream input;
 	input.open(filename);
@@ -19,7 +18,7 @@ std::vector<csvRow> readCsvFile(int& size, const char* filename) {
 			break;
 		}
 		getline(input, rows[i].rowLine);
-		std::cout << rows[i].rowLine << std::endl << std::endl; //for debug
+		//std::cout << rows[i].rowLine << std::endl << std::endl; //for debug
 		rows[i].setMembers();
 	}
 	return rows;
