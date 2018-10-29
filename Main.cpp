@@ -29,7 +29,7 @@ int outputSortedData(std::vector<csvRow> rows, int size, const char* filename) {
 	return 0;
 }
 
-int insertionSort(std::vector<csvRow> rows, int n, char feature) {
+int insertionSort(std::vector<csvRow> rows, int n) {
 	for (int i = 2; i < n; i++) {	//we skip first row, because its header
 		csvRow key = rows[i];
 		int j = i - 1;				//we skip first row, because its header
@@ -44,7 +44,7 @@ int insertionSort(std::vector<csvRow> rows, int n, char feature) {
 	return 0;
 }
 
-int mergeSort(std::vector<csvRow> rows, int n, char feature) {
+int mergeSort(std::vector<csvRow> rows, int n) {
 
 	return 0;
 }
