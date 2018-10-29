@@ -29,23 +29,55 @@ int outputSortedData(std::vector<csvRow> rows, int size, const char* filename) {
 	return 0;
 }
 
-int insertionSort(std::vector<csvRow> rows, int size, char feature) {
+int insertionSort(std::vector<csvRow> rows, int n, char feature) {
+	int f;
+
+	switch (feature) {
+		case 't':
+			f = 0;
+			break;
+		case 'p':
+			f = 1;
+			break;
+		default:
+			throw "Error. Unexpected feature for criterion: ";
+			return -2;
+	}
+	for (int i = 2; i < n; i++) {
+		csvRow key = rows[i];
+		int j = i - 1;
+
+		while (j >= 1 && rows[j] > key)
+		{
+			rows[j + 1] = rows[j];
+			j--;
+		}
+		rows[j + 1] = key;
+	}
+
 	return 0;
 }
 
-int mergeSort(std::vector<csvRow> rows, int size, char feature) {
+int mergeSort(std::vector<csvRow> rows, int n, char feature) {
+
 	return 0;
 }
 
 int main(int argc, char** argv) {
-	/*for (int i = 0; i < argc; i++) {
-		printf("%d %s\n", argc, argv[i]); // for debug
-	}*/
-
 	//get commandline arguments
 	char *algo = argv[2], *feature = argv[4];
 	int size = atoi(argv[6]) +1;
 
+	//static key doesnt work for now
+	
+	try { //set the feature as a static member.
+		csvRow::setKey(*feature);
+	}
+	catch (char* e) {
+		printf("%s %c", e, *feature);
+		return -3;
+	}
+	
 	//printf("%d %c %c\n", size, *algo, *feature); // for debug
 
 	std::vector<csvRow> rows;
@@ -54,8 +86,9 @@ int main(int argc, char** argv) {
 	}
 	catch(char* e){
 		printf("%s", e);
+		return -4;
 	}
-
+		
 	switch (*algo) {
 		case 'i': //insertion sort
 			if (insertionSort(rows, size, *feature) == -2) {
