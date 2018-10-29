@@ -22,6 +22,15 @@ bool csvRow::operator>(csvRow& row2) {
 	}
 }
 
+bool csvRow::operator<=(csvRow& row2) {
+	if (this->key) {
+		return this->price <= row2.price; //string to float
+	}
+	else {
+		return this->timestamp <= row2.timestamp;
+	}
+}
+
 int csvRow::key = -1;
 void csvRow::setKey(char feature) {
 	switch (feature) {

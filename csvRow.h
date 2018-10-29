@@ -8,6 +8,7 @@ public:
 	std::string rowLine;
 	void setMembers();
 	bool operator>(csvRow& row2);
+	bool operator<=(csvRow& row2);
 	static void setKey(char feature);
 };
 
