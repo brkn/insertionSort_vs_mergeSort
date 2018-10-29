@@ -77,16 +77,10 @@ int main(int argc, char** argv) {
 		
 	switch (*algo) {
 		case 'i': //insertion sort
-			if (insertionSort(rows, size, *feature) == -2) {
-				printf("Error. Unexpected feature type: %c", *feature);
-				return -2;
-			}
+			insertionSort(rows, size, *feature);
 			break;
 		case 'm': //merge sort
-			if (mergeSort(rows, size, *feature) == -2) {
-				printf("Error. Unexpected feature type: %c", *feature);
-				return -2;
-			}
+			mergeSort(rows, size, *feature);
 			break;
 		default:
 			printf("Error. Unexpected algorithm type: %c\n", *algo);
