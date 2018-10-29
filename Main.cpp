@@ -133,7 +133,7 @@ int main(int argc, char** argv) {
 			return -1;
 	}
 	t = clock() - t;
-	printf("Sorted %d rows, \n %c criterion \n, %c algorithm \n %f seconds\n", size - 1, *feature, *algo, ((float)t) / CLOCKS_PER_SEC);
+	printf("Sorted %d rows, \n%c criterion, \n%c algorithm \n%f seconds\n", size - 1, *feature, *algo, ((float)t) / CLOCKS_PER_SEC);
 	//output to file
 	try { // output as given filename.
 		outputSortedDataToFile(rows, size, "sorted.csv"); //outputs the sorted data to given filename
