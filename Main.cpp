@@ -42,9 +42,61 @@ void insertionSort(std::vector<csvRow> rows, int n) {
 		rows[j + 1] = key;
 	}
 }
+void mergeLeftRight(std::vector<csvRow> rows, int left, int mid, int right) {
+	int i, j, k;
 
-void mergeSort(std::vector<csvRow> rows, int n) {
+	int leftSize = mid - left + 1;
+	int rightSize = right - mid;
 
+	std::vector<csvRow> leftVector, rightVector;
+
+	/* Copy data to temp arrays L[] and R[] */
+	leftVector.insert(leftVector.begin(), rows.begin()+left, rows.begin() + left + leftSize);
+	rightVector.insert(rightVector.begin(), rows.begin()+mid + 1, rows.begin() + mid + rightSize + 1);
+
+	/* Merge the temp arrays back into arr[l..r]*/
+	i = 0; // Initial index of first subarray 
+	j = 0; // Initial index of second subarray 
+	k = left; // Initial index of merged subarray 
+	while (i < leftSize && j < rightSize)
+	{
+		if (leftVector[i] <= rightVector[j])
+		{
+			rows[k] = leftVector[i];
+			i++;
+		}
+		else
+		{
+			rows[k] = rightVector[j];
+			j++;
+		}
+		k++;
+	}
+
+	/* Copy the remaining elements of L[], if there
+	   are any */
+	while (i < leftSize)
+	{
+		rows[k] = leftVector[i];
+		i++;
+		k++;
+	}
+
+	/* Copy the remaining elements of R[], if there
+	   are any */
+	while (j < rightSize){
+		rows[k] = rightVector[j];
+		j++;
+		k++;
+	}
+}
+void mergeSort(std::vector<csvRow> rows, int left, int right) {
+	if (left < right) {
+		int mid = left + (right - left) / 2;
+		mergeSort(rows, left, mid); //sort left
+		mergeSort(rows, mid + 1, right); //sort right
+		mergeLeftRight(rows, left, mid, right);
+	}
 }
 
 int main(int argc, char** argv) {
@@ -75,10 +127,10 @@ int main(int argc, char** argv) {
 		
 	switch (*algo) {
 		case 'i': //insertion sort
-			insertionSort(rows, size, *feature);
+			insertionSort(rows, size);
 			break;
 		case 'm': //merge sort
-			mergeSort(rows, size, *feature);
+			mergeSort(rows, 1, size -1); //we send left = 1 because 0th is header
 			break;
 		default:
 			printf("Error. Unexpected algorithm type: %c\n", *algo);
