@@ -10,7 +10,7 @@ void csvRow::setMembers() {
 	std::size_t index2 = this->rowLine.find_first_of(",", index + 1);
 	if (index2 == std::string::npos) return;
 	std::string temp = this->rowLine.substr(index+1, index2-index-1);
-	this->price = stof(temp);
+	if(temp != "last_price") this->price = stof(temp);
 }
 
 bool csvRow::operator>(csvRow& row2) {
